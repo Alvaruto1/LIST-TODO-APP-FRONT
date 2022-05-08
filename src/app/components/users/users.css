@@ -1,0 +1,59 @@
+.container-login {
+  color: white;
+  font-size: 1rem;
+}
+
+.image-background-login {
+  background: url("../../assets/images/background_city.png");
+  z-index: -1;
+  position: absolute;
+  filter: blur(5px);
+}
+
+.color-background-login {
+  z-index: 1;
+  position: absolute;
+  background: rgba(143, 93, 243, 0.5);
+}
+
+.form-login {
+  max-width: 500px;
+  min-width: 500px;
+  z-index: 2;
+  background: rgba(225, 224, 227, 0.3);
+}
+
+.input-login {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(225, 255, 255);
+  color: white;
+}
+.input-login:focus-visible {
+  outline: 1px solid rgba(225, 255, 255);
+  border: none;
+}
+.button-login {
+  border: none;
+  background: radial-gradient(
+    circle at 120.71% 50%,
+    #d1fff8 0,
+    #befff6 10%,
+    #a7fff4 20%,
+    #8dfff3 30%,
+    #6cfbf2 40%,
+    #3cf2f2 50%,
+    #00e8f3 60%,
+    #00dff5 70%,
+    #00d6f9 80%,
+    #00cefd 90%,
+    #00c6ff 100%
+  );
+}
+
+.link-signup-login {
+  color: white;
+}
+.link-signup-login {
+  color: white;
+}
