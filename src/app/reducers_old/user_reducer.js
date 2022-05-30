@@ -1,4 +1,4 @@
-import { LOG_IN, SIGN_UP, IS_LOG_IN, LOG_OUT } from "../actions/user_actions";
+import { LOG_IN, SIGN_UP, IS_LOG_IN, LOG_OUT } from "../actions_old/user_actions";
 
 const userReducer = function (state = null, action) {
     switch (action.type) {

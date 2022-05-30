@@ -1,0 +1,26 @@
+.accordeon-item {
+  height: calc(100vh-56px);
+  background-color: var(--color-main);
+  cursor: pointer;
+  user-select: none;
+  width: 50px;
+  color: white;
+  border-right: 1px solid white;
+  
+}
+.accordeon-item:hover {
+  background-color: var(--color-main-hover);
+}
+
+.accordeon-item-title {
+  text-orientation: upright;
+  writing-mode: vertical-lr;
+    text-align: center;
+    
+}
+
+.container-items{
+    background: rgb(235, 234, 236);
+    border-right: 1px solid var(--color-main-hover);
+    box-shadow: 1px 0 4px;
+}

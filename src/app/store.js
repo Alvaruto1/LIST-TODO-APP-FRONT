@@ -1,6 +1,14 @@
-import thunk from 'redux-thunk';
-import { applyMiddleware, compose, createStore } from 'redux';
-import reducers from "./reducers"
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './components/users/userSlice';
+import groupReducer from './components/groups/groupSlice';
+import listReducer from './components/lists/listSlice';
 
-export const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+export const store = configureStore({
+    reducer: {
+        user: userReducer,
+        group: groupReducer,
+        list: listReducer,
+    } 
+})
+
+//export const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));

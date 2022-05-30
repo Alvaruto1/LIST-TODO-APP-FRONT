@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { signUp } from "../../actions/user_actions";
+import { signUp } from "./userSlice"
 import SignUser from "./SignUser";
 
 export default function Signup() {

@@ -1,0 +1,11 @@
+.group-item{
+    cursor: pointer;
+    user-select: none;
+    margin: 6px;
+    padding: 9px;    
+    border-radius: 5px;
+}
+
+.group-item:hover{
+    background-color: #e6e6e6 !important;
+}

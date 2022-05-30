@@ -1,15 +1,19 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import AccordeonHorizontal from "./AccordeonHorizontal/AccordeonHorizontal";
+import Navbar from "./Navbar";
+import TrashDelete from "./TrashDelete";
 
 export default function Home() {
-  const user = useSelector((state) => state.user);
+  const [activedTrashGroup, setActivedTrashGroup] = useState(true);
+
   return (
     <div>
-      <div>Home</div>
-      <div>{user.user ? user.user.username : ""}</div>
-      <div>{user.user ? user.user.email : ""}</div>
-      <Link to="/logout">Logout</Link>
+      <Navbar></Navbar>
+      <AccordeonHorizontal
+        setActivedTrash={setActivedTrashGroup}
+      ></AccordeonHorizontal>
+      <TrashDelete activedTrash={activedTrashGroup} element="Group" />
+      <TrashDelete activedTrash={activedTrashGroup} element="List" />
     </div>
   );
 }
