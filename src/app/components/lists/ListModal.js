@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Modal from "../Modal/Modal";
-import { addList } from "./listSlice";
+import { addList, editList } from "./listSlice";
 
-export default function ListModal() {
+export default function ListModal(props) {
+  const { modal, initial_data } = props;
   const [title, setTitle] = useState("");
+  const [id, setId] = useState("");
   const current_group = useSelector((state) => state.group.current_group);
   const list = {
     list: {
@@ -43,14 +45,26 @@ export default function ListModal() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-    </div>
+    </div>,
   ];
+  useEffect(() => {
+    if (initial_data) {
+      setTitle(initial_data.title);
+      setId(initial_data.id);
+    }
+  }, [initial_data]);
   return (
     <Modal
-      modal="listModal"
+      modal={modal}
       title="List"
       list_inputs={list_inputs}
-      funct={() => dispatch(addList(current_group._id["$oid"], list, okFunction, errorFunction))}
+      funct={() =>
+        dispatch(
+          initial_data
+            ? editList(list, current_group._id["$oid"], id, okFunction, errorFunction)
+            : addList(current_group._id["$oid"], list, okFunction, errorFunction)
+        )
+      }
     />
   );
 }

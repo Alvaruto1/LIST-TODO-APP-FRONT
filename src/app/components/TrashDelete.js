@@ -1,30 +1,30 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { deleteGroup } from "./groups/groupSlice";
 
 export default function TrashDelete(props) {
-  const { activedTrash, element } = props;
-    const dispatch = useDispatch();
-    const okFunction = () => {
-      Swal.fire({
-        icon: "success",
-        title: `${element} deleted successfully`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    };
+  const { activedTrash, element, functionDelete } = props;
+  const dispatch = useDispatch();
+  const okFunction = () => {
+    Swal.fire({
+      icon: "success",
+      title: `${element} deleted successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
 
-    const errorFunction = (error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
-    };
+  const errorFunction = (error) => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: error,
+    });
+  };
   const onDrop = (e) => {
     e.preventDefault();
-    var group_id = e.dataTransfer.getData("text");
+    var data = e.dataTransfer.getData("data");
+    let array_data = data.split(",");
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -33,7 +33,7 @@ export default function TrashDelete(props) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
-        dispatch(deleteGroup(group_id, okFunction, errorFunction));
+        dispatch(functionDelete(...array_data, okFunction, errorFunction));
       }
     });
   };

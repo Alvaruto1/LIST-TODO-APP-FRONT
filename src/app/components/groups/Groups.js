@@ -5,10 +5,11 @@ import { getLists } from "../lists/listSlice";
 import GroupModal from "./GroupModal";
 import { current_group, getGroups } from "./groupSlice";
 import "./groups.css";
-import {Modal} from "bootstrap";
+import { Modal } from "bootstrap";
 
 export default function Groups(props) {
-  const {setActivedTrash} = props;
+  const { setActivedTrashGroup } = props;
+  const setActivedTrash = setActivedTrashGroup;
   const {
     isActivedGroups,
     setIsActivedGroups,
@@ -17,16 +18,18 @@ export default function Groups(props) {
   } = props;
   const dispatch = useDispatch();
   const groups = useSelector((state) => state.group.group.groups);
-  const current_group_object = useSelector((state) => state.group.current_group);
-  
+  const current_group_object = useSelector(
+    (state) => state.group.current_group
+  );
+
   useEffect(() => {
     dispatch(getGroups());
   }, [dispatch]);
 
   const onDoubleClickEdit = (e) => {
     const modalEdit = new Modal(document.getElementById("groupModalEdit"));
-    modalEdit.show()
-  }  
+    modalEdit.show();
+  };
 
   return (
     <>
@@ -44,14 +47,13 @@ export default function Groups(props) {
                   className="group-item"
                   onDragStart={(e) => {
                     setActivedTrash(false);
-                    e.dataTransfer.setData("text", group._id["$oid"]);
+                    e.dataTransfer.setData("data", [group._id["$oid"]]);
                   }}
                   onDragEnd={(e) => {
                     setActivedTrash(true);
                   }}
                   draggable="true"
                   key={index}
-                  href=""
                   onClick={() => {
                     dispatch(getLists(group._id["$oid"])).then(() => {
                       setIsActivedLists(false);
@@ -80,7 +82,14 @@ export default function Groups(props) {
         </div>
       </ItemMenu>
       <GroupModal modal="groupModal"></GroupModal>
-      <GroupModal modal="groupModalEdit" initial_data={{name: current_group_object?.name, color: current_group_object?.color, id: current_group_object?._id['$oid']}}></GroupModal>
+      <GroupModal
+        modal="groupModalEdit"
+        initial_data={{
+          name: current_group_object?.name,
+          color: current_group_object?.color,
+          id: current_group_object?._id["$oid"],
+        }}
+      ></GroupModal>
     </>
   );
 }

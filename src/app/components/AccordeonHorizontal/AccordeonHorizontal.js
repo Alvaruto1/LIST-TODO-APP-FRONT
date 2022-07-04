@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Groups from "../groups/Groups";
+import List from "../lists/List";
 import Lists from "../lists/Lists";
 import "./accordeonHorizontal.css";
 
@@ -21,8 +22,9 @@ export default function AccordeonHorizontal(props) {
         isActivedLists={isActivedLists}
         setIsActivedLists={setIsActivedLists}
         isActivedButtonList={isActivedButtonList}
+        {...props}
       ></Lists>
-      <div className="flex-fill">Main</div>
+      <List></List>
     </div>
   );
 }
