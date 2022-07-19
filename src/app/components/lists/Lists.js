@@ -4,6 +4,7 @@ import ItemMenu from "../AccordeonHorizontal/ItemMenu";
 import { Modal } from "bootstrap";
 import ListModal from "./ListModal";
 import { current_list } from "./listSlice";
+import { getItems } from "./items/itemSlice";
 
 export default function Lists(props) {
   const lists = useSelector((state) => state.list.list.lists);
@@ -54,6 +55,12 @@ export default function Lists(props) {
                   className="group-item"
                   onClick={() => {
                     dispatch(current_list(list));
+                    dispatch(
+                      getItems(
+                        current_group_object._id["$oid"],
+                        list._id["$oid"]
+                      )
+                    );
                   }}
                 >
                   {list.title}

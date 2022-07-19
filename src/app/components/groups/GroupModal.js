@@ -5,11 +5,11 @@ import Modal from "../Modal/Modal";
 import { addGroup, editGroup } from "./groupSlice";
 
 export default function GroupModal(props) {
-  const {modal, initial_data} = props; 
+  const { modal, initial_data } = props;
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [id, setId] = useState("");
-  const group = {group_list: {name, color}};
+  const group = { group_list: { name, color } };
   const dispatch = useDispatch();
   const okFunction = () => {
     Swal.fire({
@@ -26,6 +26,11 @@ export default function GroupModal(props) {
       title: "Oops...",
       text: error,
     });
+  };
+
+  const cleanForm = () => {
+    setName("");
+    setColor("");
   };
 
   const list_inputs = [
@@ -61,8 +66,7 @@ export default function GroupModal(props) {
       setColor(initial_data.color);
       setId(initial_data.id);
     }
-  }
-  , [initial_data]);
+  }, [initial_data]);
   return (
     <Modal
       modal={modal}
@@ -73,7 +77,9 @@ export default function GroupModal(props) {
           initial_data
             ? editGroup(group, id, okFunction, errorFunction)
             : addGroup(group, okFunction, errorFunction)
-        )
+        ).then(() => {
+          cleanForm();
+        })
       }
     />
   );

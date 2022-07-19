@@ -20,6 +20,9 @@ export const listSlice = createSlice({
     current_list: (state, action) => {
       state.current_list = action.payload;
     },
+    delete_current_list: (state, action) => {
+      state.current_list = null;
+    },
     edit_list: (state, action) => {
       state.list.lists.map((list, index) => {
         if (list._id["$oid"] === action.payload.list._id["$oid"]) {
@@ -30,8 +33,14 @@ export const listSlice = createSlice({
   },
 });
 
-export const { add_list, get_lists, delete_list, edit_list, current_list } =
-  listSlice.actions;
+export const {
+  add_list,
+  get_lists,
+  delete_list,
+  edit_list,
+  current_list,
+  delete_current_list,
+} = listSlice.actions;
 
 export function addList(group_list_id, list, okFunction, errorFunction) {
   const url = `http://localhost:3001/group_lists/${group_list_id}/lists`;
@@ -86,7 +95,13 @@ export function deleteList(group_lists_id, list_id, okFunction, errorFunction) {
   };
 }
 
-export function editList(list, group_lists_id, list_id, okFunction, errorFunction) {
+export function editList(
+  list,
+  group_lists_id,
+  list_id,
+  okFunction,
+  errorFunction
+) {
   const url = `http://localhost:3001/group_lists/${group_lists_id}/lists/${list_id}`;
   const request = fetch(url, {
     method: "PUT",

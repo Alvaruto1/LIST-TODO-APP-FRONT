@@ -4,6 +4,7 @@ import ItemMenu from "../AccordeonHorizontal/ItemMenu";
 import { getLists } from "../lists/listSlice";
 import GroupModal from "./GroupModal";
 import { current_group, getGroups } from "./groupSlice";
+import { delete_current_list } from "../lists/listSlice";
 import "./groups.css";
 import { Modal } from "bootstrap";
 
@@ -59,6 +60,7 @@ export default function Groups(props) {
                       setIsActivedLists(false);
                       setIsActivedButtonList(true);
                       dispatch(current_group(group));
+                      dispatch(delete_current_list());
                     });
                   }}
                   style={{ background: group.color }}

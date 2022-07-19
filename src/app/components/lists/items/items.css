@@ -1,0 +1,8 @@
+.content-items{
+  height: 50vh;
+  width: 500px;
+  min-width: 500px;
+  overflow-y: scroll;
+  padding: 20px;
+  text-align: left;
+}

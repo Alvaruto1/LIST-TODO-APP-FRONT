@@ -46,7 +46,7 @@ export default function Modal(props) {
               type="button"
               className="btn btn-primary"
             >
-              Save group
+              Save {title}
             </button>
           </div>
         </div>

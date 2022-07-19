@@ -24,6 +24,10 @@ export default function ListModal(props) {
     });
   };
 
+  const cleanForm = () => {
+    setTitle("");
+  };
+
   const errorFunction = (error) => {
     Swal.fire({
       icon: "error",
@@ -61,9 +65,22 @@ export default function ListModal(props) {
       funct={() =>
         dispatch(
           initial_data
-            ? editList(list, current_group._id["$oid"], id, okFunction, errorFunction)
-            : addList(current_group._id["$oid"], list, okFunction, errorFunction)
-        )
+            ? editList(
+                list,
+                current_group._id["$oid"],
+                id,
+                okFunction,
+                errorFunction
+              )
+            : addList(
+                current_group._id["$oid"],
+                list,
+                okFunction,
+                errorFunction
+              )
+        ).then(() => {
+          cleanForm();
+        })
       }
     />
   );

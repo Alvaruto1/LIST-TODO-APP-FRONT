@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Groups from "../groups/Groups";
-import List from "../lists/List";
+import List from "../lists/items/List";
 import Lists from "../lists/Lists";
 import "./accordeonHorizontal.css";
 
